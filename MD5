@@ -1,0 +1,9 @@
+bea2dc3d8e59379f7dc2db4ba348ae25 *DESCRIPTION
+c404fee4ef184f812eb5e12a7eaa841a *NAMESPACE
+4061f7bfefc5a25666a71342b24c7500 *R/pcovr.R
+c6f041adef9e4e469257506657789357 *R/pcovr_est.R
+f7e568c2cdf8f06c3d131486eaad12ff *data/alexithymia.rda
+5083d2424f46cfc91779dbfc6c9ba7a4 *man/PCovR-package.Rd
+c933d98ed5d6d7f7b33fe044af838511 *man/alexithymia.Rd
+71643ad3213a85ab2885b7393716053f *man/pcovr.Rd
+59e82824ea7117c84bceb2e7a7098bcc *man/pcovr_est.Rd

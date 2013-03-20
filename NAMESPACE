@@ -1,0 +1,3 @@
+exportPattern("^[[:alpha:]]+")
+
+import(gtools, psych, GPArotation, ThreeWay, MASS)
