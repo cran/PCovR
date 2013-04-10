@@ -1,5 +1,9 @@
 \name{pcovr}
+\alias{pcovr.default}
 \alias{pcovr}
+\alias{plot.pcovr}
+\alias{print.pcovr}
+\alias{summary.pcovr}
 \title{Full Principal covariates regression analysis of a specific data set
 }
 \description{
@@ -45,6 +49,11 @@ The interpretation of the obtained solution usually starts with the interpretati
   \item{VAFsum}{Weighted sum of the variance accounted for in \env{X} and in \env{Y} as a function of number of components (1 x number of components)}
   \item{alpha}{Selected value of the weighting parameter}
   \item{R}{Selected number of components}
+  \item{modsel}{Model selection procedure that was used}
+  \item{rot}{Rotation criterion that was used}
+  \item{prep}{Method of preprocessing that was used}
+  \item{Rvalues}{Numbers of components that were considered}
+  \item{Alphavalues}{Weighting parameter values that were considered}
 }
 \references{
 \cite{Browne, M. W. (1972). Oblique rotation to a partially specified target. British Journal of Mathematical and Statistical Psychology , 25 (2), 207-212.}
@@ -61,9 +70,9 @@ The interpretation of the obtained solution usually starts with the interpretati
 \author{Marlies Vervloet (\email{marlies.vervloet@ppw.kuleuven.be})}
 \examples{
 data(alexithymia)
-X <- alexithymia[,1:20]
-Y <- alexithymia[,21:22]
-pcovr(X, Y) 
+results <- pcovr(alexithymia$X, alexithymia$Y)
+summary(results)
+plot(results)
 }
 \keyword{multivariate}
 \keyword{regression}

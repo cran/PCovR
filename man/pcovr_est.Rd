@@ -28,13 +28,9 @@ pcovr_est(X, Y, r, a, cross = FALSE, fold = "LeaveOneOut")
 \cite{Hastie, T., Tibshirani, R., & Friedman, J. (2001). The elements of statistical learning: Data mining, inference and prediction. New York: Springer.}}
 \author{Marlies Vervloet (\email{marlies.vervloet@ppw.kuleuven.be})}
 \examples{
-# standardize data
 data(alexithymia)
-Z <- nrm2(scale(alexithymia, scale = FALSE))*122^(1/2)
-X <- Z[,1:20]
-Y <- array(Z[,21:22],c(122,2))
-
-# pcovr-analysis
+X <- data.matrix(alexithymia$X)
+Y <- data.matrix(alexithymia$Y)
 results <- pcovr_est(X, Y, r=2, a=.90)
 str(results)
 }

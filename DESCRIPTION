@@ -1,9 +1,9 @@
 Package: PCovR
 Type: Package
 Title: Principal Covariates Regression
-Version: 1.0
+Version: 1.1
 Depends: gtools, psych, GPArotation, ThreeWay, MASS
-Date: 2013-03-20
+Date: 2013-04-10
 Authors@R:
         c(person("Marlies","Vervloet",role=c("aut","cre"),email="marlies.vervloet@ppw.kuleuven.be"),person("Henk","Kiers",role="aut"),person("Eva","Ceulemans",role="ctb"))
 Description: Analyzing regression data with many and/or highly
@@ -13,10 +13,10 @@ Description: Analyzing regression data with many and/or highly
         rotation options are provided in this package, as well as model
         selection options.
 License: GPL (>= 2)
-Packaged: 2013-03-20 09:23:44 UTC; u0073672
+Packaged: 2013-04-11 12:04:21 UTC; u0073672
 Author: Marlies Vervloet [aut, cre], Henk Kiers [aut], Eva Ceulemans
         [ctb]
 Maintainer: Marlies Vervloet <marlies.vervloet@ppw.kuleuven.be>
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-03-20 13:15:29
+Date/Publication: 2013-04-11 14:34:21
