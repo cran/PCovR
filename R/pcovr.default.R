@@ -1,10 +1,11 @@
 pcovr.default <-
-function(X,Y,modsel="seq",Rmin=1,Rmax=NULL,weight=NULL,rot="varimax", target=NULL, prep="stand", ratio=1, fold="LeaveOneOut"){
-  library(GPArotation)
-  library(ThreeWay)
+function(X,Y,modsel="seq",Rmin=1,Rmax=ncol(X)/3,R=NULL,weight=NULL,rot="varimax", target=NULL, prepX="stand",prepY="stand", ratio=1, fold="LeaveOneOut"){
   J <- ncol(X)
   N <- nrow(X)
   K <- ncol(Y)
+  if (N!=nrow(Y)){
+    print('The number of observations is not identical for X and Y')
+  }
   Jlabel <- colnames(X)
   Klabel <- colnames(Y)
   
@@ -13,20 +14,28 @@ function(X,Y,modsel="seq",Rmin=1,Rmax=NULL,weight=NULL,rot="varimax", target=NUL
   } else {
     a <- weight
   }
-  
-  if (is.null(Rmax)){
-    Rmax <- J/3
+  if (is.null(R)==F){
+    Rmin <- Rmax <- R
   }
+  #if (is.null(Rmax)){
+  #  Rmax <- J/3
+  #}
   vec <- Rmin:Rmax
   
   
   # PREPROCESSING
-  Z <- switch(prep, 
-              stand=nrm2(scale(cbind(X,Y), center = TRUE, scale = FALSE))*N^(1/2), 
-              cent=scale(cbind(X,Y), center = TRUE, scale = FALSE))
-  X <- Z[,1:J]
-  Y <- array(Z[,(J+1):(J+K)],c(N,K))
-  
+#   Z <- switch(prep, 
+#               stand=nrm2(scale(cbind(X,Y), center = TRUE, scale = FALSE))*N^(1/2), 
+#               cent=scale(cbind(X,Y), center = TRUE, scale = FALSE))
+#   X <- Z[,1:J]
+#   Y <- array(Z[,(J+1):(J+K)],c(N,K))
+  X <- switch(prepX,
+              stand=nrm2(scale(X, center=T, scale=F))*N^(1/2),
+              cent=scale(X, center=T, scale=F))
+  Y <- switch(prepY,
+              stand=nrm2(scale(Y, center=T, scale=F))*N^(1/2),
+              cent=scale(Y, center=T, scale=F))
+  Y <- array(Y,c(N,K))
   
   # MODEL SELECTION
   AlphaMaxLik <- (SUM(X)$ssq/ (SUM(X)$ssq + SUM(Y)$ssq*ratio))
@@ -52,34 +61,32 @@ function(X,Y,modsel="seq",Rmin=1,Rmax=NULL,weight=NULL,rot="varimax", target=NUL
     R <- vec[which.max(CV)]
     
   } else if (modsel=="seq") {
-    VAF <- array(NA,c(1,length(vec)))
+    vec <- c(vec[1]-1,vec,vec[length(vec)]+1)
+    VAF <- matrix(0,1,length(vec))
     scr <- array(NA,c(1,length(vec)))
     for (l in 1:length(vec)){
-      para <- pcovr_est(X,Y,vec[l], a = alpha, cross = FALSE,fold)
-      VAF[1,l] <- alpha*para$Rx2 + (1-alpha)*para$Ry2
-    }
-    if (length(vec)>2){
-      for (u in 2:(length(vec)-1)){
-        scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
+      if (vec[l]>0){
+        para <- pcovr_est(X,Y,vec[l], a = alpha, cross = FALSE,fold)
+        VAF[1,l] <- alpha*para$Rx2 + (1-alpha)*para$Ry2
       }
-    } else{
-      scr <- VAF
+    }
+    for (u in 2:(length(vec)-1)){
+      scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
     }
     R <- vec[which.max(scr)]
   } else if (modsel=="seqAcv"){
-    VAF <- array(NA,c(1,length(vec)))
+    vec <- c(vec[1]-1,vec,vec[length(vec)]+1)
+    VAF <- matrix(0,1,length(vec))
     scr <- array(NA,c(1,length(vec)))
     CV <- array(NA,c(length(a),1))
     for (l in 1:length(vec)){
-      para <- pcovr_est(X,Y,vec[l], a = alpha, cross = FALSE,fold)
-      VAF[1,l] <- alpha*para$Rx2 + (1-alpha)*para$Ry2
-    }
-    if (length(vec)>2){
-      for (u in 2:(length(vec)-1)){
-        scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
+      if (vec[l]>0){
+        para <- pcovr_est(X,Y,vec[l], a = alpha, cross = FALSE,fold)
+        VAF[1,l] <- alpha*para$Rx2 + (1-alpha)*para$Ry2
       }
-    } else{
-      scr <- VAF
+    }
+    for (u in 2:(length(vec)-1)){
+      scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
     }
     R <- vec[which.max(scr)]
     for (w in 1:length(a)){
@@ -109,8 +116,20 @@ function(X,Y,modsel="seq",Rmin=1,Rmax=NULL,weight=NULL,rot="varimax", target=NUL
     if (rot=="varimax"){
       rotation <- GPForth(Bpx, Tmat=diag(ncol(Bpx)))
     }
-    if (rot=="target"){
-      rotation <- targetT(Bpx, Tmat=diag(ncol(Bpx)), target)
+    if (rot=="targetT"){
+      rotation <- targetT(Bpx, Tmat=diag(ncol(Bpx)), t(target))
+    }
+    if (rot=="targetQ"){
+      rotation <- targetQ(Bpx, Tmat=diag(ncol(Bpx)), t(target))
+    }
+    if (rot=="simplimax"){
+      rotation <- simplimax(Bpx, Tmat=diag(ncol(Bpx)))
+    }
+    if (rot=="wvarim"){
+      rotation <- wvarim(Bpx)
+    }
+    if (rot=="promin"){
+      rotation <- promin(Bpx)
     }
     rotE <- t(ginv(rotation$Th))
     Px <- t(rotation$loadings)
@@ -139,12 +158,12 @@ function(X,Y,modsel="seq",Rmin=1,Rmax=NULL,weight=NULL,rot="varimax", target=NUL
     CV <- data.frame(CV)
     rownames(CV) <- paste("alpha=",a,": ",sep="")
     colnames(CV) <- paste(vec,"component(s)",sep="")
-    results <- list(Px=Px,Py=Py,Te=Te,W=W,Rx2=Rx2,Ry2=Ry2,Qy2=CV,alpha=alpha,R=R,modsel=modsel,rot=rot,prep=prep,Rvalues=vec,Alphavalues=a)
+    results <- list(Px=Px,Py=Py,Te=Te,W=W,Rx2=Rx2,Ry2=Ry2,Qy2=CV,alpha=alpha,R=R,modsel=modsel,rot=rot,prepX=prepX,prepY=prepY,Rvalues=vec,Alphavalues=a)
   } else if (modsel=="seqRcv"){
     CV <- data.frame(CV)
     rownames(CV) <- paste("alpha=",alpha,": ",sep="")
     colnames(CV) <- paste(vec,"component(s)",sep="")
-    results <- list(Px=Px,Py=Py,Te=Te,W=W,Rx2=Rx2,Ry2=Ry2,Qy2=CV,alpha=alpha,R=R,modsel=modsel,rot=rot,prep=prep,Rvalues=vec,Alphavalues=a)
+    results <- list(Px=Px,Py=Py,Te=Te,W=W,Rx2=Rx2,Ry2=Ry2,Qy2=CV,alpha=alpha,R=R,modsel=modsel,rot=rot,prepX=prepX,prepY=prepY,Rvalues=vec,Alphavalues=a)
   } else if (modsel=="seqAcv"){
     CV <- data.frame(CV)
     rownames(CV) <- paste("alpha=",a,": ",sep="")
@@ -152,12 +171,12 @@ function(X,Y,modsel="seq",Rmin=1,Rmax=NULL,weight=NULL,rot="varimax", target=NUL
     VAF <- data.frame(VAF)
     rownames(VAF) <- paste("alpha=",a[which.min(abs(a - AlphaMaxLik))],": ",sep="")
     colnames(VAF) <- paste(vec,"component(s)",sep="")
-    results <- list(Px=Px,Py=Py,Te=Te,W=W,Rx2=Rx2,Ry2=Ry2,Qy2=CV,VAFsum=VAF,alpha=alpha,R=R,modsel=modsel,rot=rot,prep=prep,Rvalues=vec,Alphavalues=a)
+    results <- list(Px=Px,Py=Py,Te=Te,W=W,Rx2=Rx2,Ry2=Ry2,Qy2=CV,VAFsum=VAF,alpha=alpha,R=R,modsel=modsel,rot=rot,prepX=prepX,prepY=prepY,Rvalues=vec,Alphavalues=a)
   } else {
     VAF <- data.frame(VAF)
     rownames(VAF) <- paste("alpha=",alpha,": ",sep="")
     colnames(VAF) <- paste(vec,"component(s)",sep="")
-    results <- list(Px=Px,Py=Py,Te=Te,W=W,Rx2=Rx2,Ry2=Ry2,VAFsum=VAF,alpha=alpha,R=R,modsel=modsel,rot=rot,prep=prep,Rvalues=vec,Alphavalues=a)
+    results <- list(Px=Px,Py=Py,Te=Te,W=W,Rx2=Rx2,Ry2=Ry2,VAFsum=VAF,alpha=alpha,R=R,modsel=modsel,rot=rot,prepX=prepX,prepY=prepY,Rvalues=vec,Alphavalues=a)
   }
   class(results) <- "pcovr"
   return(results)

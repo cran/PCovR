@@ -3,8 +3,10 @@ function(object, ...){
   cat("SELECTED SETTINGS BY USER\n")
   cat("Model selection procedure: ",object$modsel,"\n")
   cat("Rotation criterion: ",object$rot,"\n")
-  y <- ifelse(object$prep=="cent","Centered data", "Standardized data")#hmm
-  cat("Preprocessing: ",y,"\n\n")
+  y <- ifelse(object$prepX=="cent","Centered data", "Standardized data")#hmm
+  cat("Preprocessing X: ",y,"\n")
+  z <- ifelse(object$prepY=="cent","Centered data", "Standardized data")#hmm
+  cat("Preprocessing Y: ",z,"\n\n")
   cat("DATA CHARACTERISTICS\n")
   cat("Number of observations: ",nrow(object$Te),"\n")
   cat("Number of predictors: ",ncol(object$Px),"\n")
@@ -14,7 +16,8 @@ function(object, ...){
   cat("Weighting parameter value: ",object$alpha,"\n\n")
   cat("OUTPUT\n")
   cat("Loading matrix:\n")
-  print(t(object$Px))
+  srt <- SortLoadings(object$Px)
+  print(t(srt))
   cat("\nRegression weight matrix:\n")
   print(t(object$Py))
   cat("\nExplained variance in X:",object$Rx2,"\n")

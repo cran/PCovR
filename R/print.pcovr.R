@@ -1,7 +1,8 @@
 print.pcovr <-
 function(x, ...){
   cat("Loading matrix:\n")
-  print(t(x$Px))
+  srt <- SortLoadings(x$Px)
+  print(t(srt))
   cat("\nRegression weight matrix:\n")
   print(t(x$Py))
   cat("\nExplained variance in X:",x$Rx2,"\n")

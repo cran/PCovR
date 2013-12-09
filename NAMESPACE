@@ -1,6 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 
-import(gtools, psych, GPArotation, ThreeWay, MASS)
+import(GPArotation, ThreeWay, MASS, Matrix)
 
 S3method(print, pcovr)
 S3method(summary, pcovr)

@@ -1,8 +1,9 @@
 pcovr_est <-
 function(X,Y,r,a,cross=FALSE,fold="LeaveOneOut"){
-  library(MASS)
-  library(ThreeWay)
   N <- nrow(X)
+  if (N!=nrow(Y)){
+    print('The number of observations is not identical for X and Y')
+  }
   
   #compute projector on X
   S <- t(X) %*% X
