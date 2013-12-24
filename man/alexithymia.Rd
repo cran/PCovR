@@ -5,7 +5,7 @@
 Effect of alexithymia on depression and self-esteem
 }
 \description{
-The data contain the scores of 122 Belgian psychology students on the 20-item Toronto Alexithymia Scale (TAS-20; Bagby, Parker, & Taylor, 1994), which measures the inability to recognize and verbalize emotions, the Center for Epidemiological Studies Depression Scale (CES-D; Radloff, 1977), and the Rosenberg Self-Esteem Scale (RSE; Rosenberg, 1989). This data can be used to examine the extent to which the degree of depressive symptomatology (measured by the total CES-D score), and the degree of self-esteem (measured by the total RSE-score), can be predicted by the separate items of the TAS-20. We investigate the individual items because Bankier, Aigner and Bach (2001) emphasize that alexithymia is a multidimensional construct and authors disagree about the number and nature of the dimensions.}
+The data contain the scores of 122 Belgian psychology students on the 20-item Toronto Alexithymia Scale (TAS-20; Bagby, Parker, & Taylor, 1994), which measures the inability to recognize and verbalize emotions, the Center for Epidemiological Studies Depression Scale (CES-D; Radloff, 1977), and the Rosenberg Self-Esteem Scale (RSE; Rosenberg, 1989). These data can be used to examine the extent to which the degree of depressive symptomatology (measured by the total CES-D score), and the degree of self-esteem (measured by the total RSE-score), can be predicted by the separate items of the TAS-20. We investigate the individual items because Bankier, Aigner and Bach (2001) emphasize that alexithymia is a multidimensional construct and authors disagree about the number and nature of the dimensions.}
 \usage{data(alexithymia)}
 \format{
   

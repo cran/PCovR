@@ -11,7 +11,7 @@ Application of a PCovR analysis consists of the following steps: preprocessing t
 }
 \usage{
 pcovr(X,Y,modsel="seq",Rmin=1,Rmax=ncol(X)/3,R=NULL,weight=NULL,rot="varimax", 
-target=NULL, prepX="stand",prepY="stand", ratio=1, fold="LeaveOneOut")
+target=NULL, prepX="stand",prepY="stand", ratio=1, fold="LeaveOneOut",zeroloads=ncol(X))
 }
 \arguments{
   \item{X}{Dataframe containing predictor scores}
@@ -28,6 +28,7 @@ target=NULL, prepX="stand",prepY="stand", ratio=1, fold="LeaveOneOut")
   \item{prepY}{Preprocessing of criterion scores: standardizing (\kbd{stand}) or centering data (\kbd{cent})}
   \item{ratio}{Ratio of the estimated error variances of the predictor block and the criterion block}
   \item{fold}{Value of \emph{k} when performing \emph{k}-fold cross-validation. By default, leave-one-out cross-validation is performed.}
+  \item{zeroloads}{Number of near-zero loadings of the target for \kbd{simplimax} rotation}
 }
 \details{
 \subsection{Preprocessing}{There are two preprocessing options included in this package, for both the predictor and criterion scores. Specifically, it is possible to only center the data  (\kbd{prepX="cent"} and/or \kbd{prepY="cent"}). However, the default option is to standardize the data (\kbd{prepX="stand"} and \kbd{prepY="stand"}), which implies that the data are both centered and normalized (i.e., each variable has a mean of zero and a standard deviation of one).}
