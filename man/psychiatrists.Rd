@@ -15,7 +15,7 @@ List of 2
 
 \subsection{$ X:'data.frame':  30 obs. of  23 variables:}{
   \describe{
-    \item{\code{desorganised speech}}{}
+    \item{\code{desorganised_speech}}{}
     \item{\code{agitation}}{}
     \item{\code{hallucinations}}{}
     \item{\code{inappropriate}}{}
@@ -23,21 +23,21 @@ List of 2
     \item{\code{depression}}{}
     \item{\code{fear}}{}
     \item{\code{suicide}}{}
-    \item{\code{somatic concern}}{}
+    \item{\code{somatic_concern}}{}
     \item{\code{narcotics}}{}
     \item{\code{antisocial}}{}
     \item{\code{retardation}}{}
-    \item{\code{social isolation}}{}
+    \item{\code{social_isolation}}{}
     \item{\code{routine}}{}
     \item{\code{alcohol}}{}
     \item{\code{negativism}}{}
     \item{\code{denial}}{}
     \item{\code{grandeur}}{}
     \item{\code{suspicion}}{}
-    \item{\code{intellectual obstruction}}{}
-    \item{\code{impulse control}}{}
-    \item{\code{social leveling}}{}
-    \item{\code{occupational dysfunction}}{}
+    \item{\code{intellectual_obstruction}}{}
+    \item{\code{impulse_control}}{}
+    \item{\code{social_leveling}}{}
+    \item{\code{occupational_dysfunction}}{}
     }}
 
 \subsection{$ Y:'data.frame':  30 obs. of  4 variables:}{
@@ -45,7 +45,7 @@ List of 2
     \item{\code{toxicomania}}{}
     \item{\code{schizophrenia}}{}
     \item{\code{depression}}{}
-    \item{\code{anxiety disorder}}{}
+    \item{\code{anxiety_disorder}}{}
   }}
   }
 \examples{

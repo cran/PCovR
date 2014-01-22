@@ -1,5 +1,5 @@
 pcovr.default <-
-  function(X,Y,modsel="seq",Rmin=1,Rmax=ncol(X)/3,R=NULL,weight=NULL,rot="varimax", target=NULL, prepX="stand",prepY="stand", ratio=1, fold="LeaveOneOut",zeroloads=ncol(X)){
+  function(X,Y,modsel="seq",Rmin=1,Rmax=ncol(X)/3,R=NULL,weight=NULL,rot="varimax", target=NULL, prepX="stand",prepY="stand", ratio=ErrorRatio(X,Y,Rmin,Rmax,prepX,prepY), fold="LeaveOneOut",zeroloads=ncol(X)){
     J <- ncol(X)
     N <- nrow(X)
     K <- ncol(Y)
@@ -17,18 +17,10 @@ pcovr.default <-
     if (is.null(R)==F){
       Rmin <- Rmax <- R
     }
-    #if (is.null(Rmax)){
-    #  Rmax <- J/3
-    #}
     vec <- Rmin:Rmax
     
     
     # PREPROCESSING
-    #   Z <- switch(prep, 
-    #               stand=nrm2(scale(cbind(X,Y), center = TRUE, scale = FALSE))*N^(1/2), 
-    #               cent=scale(cbind(X,Y), center = TRUE, scale = FALSE))
-    #   X <- Z[,1:J]
-    #   Y <- array(Z[,(J+1):(J+K)],c(N,K))
     X <- switch(prepX,
                 stand=nrm2(scale(X, center=T, scale=F))*N^(1/2),
                 cent=scale(X, center=T, scale=F))

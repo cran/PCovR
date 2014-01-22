@@ -11,7 +11,9 @@ Application of a PCovR analysis consists of the following steps: preprocessing t
 }
 \usage{
 pcovr(X,Y,modsel="seq",Rmin=1,Rmax=ncol(X)/3,R=NULL,weight=NULL,rot="varimax", 
-target=NULL, prepX="stand",prepY="stand", ratio=1, fold="LeaveOneOut",zeroloads=ncol(X))
+target=NULL, prepX="stand",prepY="stand", 
+ratio=ErrorRatio(X,Y,Rmin,Rmax,prepX,prepY), 
+fold="LeaveOneOut",zeroloads=ncol(X))
 }
 \arguments{
   \item{X}{Dataframe containing predictor scores}
@@ -32,7 +34,7 @@ target=NULL, prepX="stand",prepY="stand", ratio=1, fold="LeaveOneOut",zeroloads=
 }
 \details{
 \subsection{Preprocessing}{There are two preprocessing options included in this package, for both the predictor and criterion scores. Specifically, it is possible to only center the data  (\kbd{prepX="cent"} and/or \kbd{prepY="cent"}). However, the default option is to standardize the data (\kbd{prepX="stand"} and \kbd{prepY="stand"}), which implies that the data are both centered and normalized (i.e., each variable has a mean of zero and a standard deviation of one).}
-\subsection{Model selection}{\subsection{Sequential procedure}{The fastest and therefore default model selection setting (\kbd{modsel="seq"}) implies a sequential procedure in which the weighting value is determined on the basis of maximum likelihood principles (Vervloet, Van den Noortgate, Van Deun, & Ceulemans, 2013), but taking into account the values specified by the user (\kbd{weight}). Note that the default error variance ratio equals 1, but can be specified otherwise with the parameter \kbd{ratio}. Among all models with the selected weighting value and a number of components between \kbd{Rmin} and \kbd{Rmax}, that solution is picked that has the highest st-value (Cattell, 1966; Wilderjans, Ceulemans, & Meers, 2012). Please note that there is also the option to overrule the model selection procedure. When specifying a number for the input parameter \kbd{R}, \kbd{Rmin} and \kbd{Rmax} will be ignored, and the specified number of components will be used when running the analysis.
+\subsection{Model selection}{\subsection{Sequential procedure}{The fastest and therefore default model selection setting (\kbd{modsel="seq"}) implies a sequential procedure in which the weighting value is determined on the basis of maximum likelihood principles (Vervloet, Van den Noortgate, Van Deun, & Ceulemans, 2013), but taking into account the values specified by the user (\kbd{weight}). Note that the default error variance ratio is estimated with the function \code{\link{ErrorRatio}}, but can be specified otherwise with the parameter \kbd{ratio}. Among all models with the selected weighting value and a number of components between \kbd{Rmin} and \kbd{Rmax}, that solution is picked that has the highest st-value (Cattell, 1966; Wilderjans, Ceulemans, & Meers, 2012). Please note that there is also the option to overrule the model selection procedure. When specifying a number for the input parameter \kbd{R}, \kbd{Rmin} and \kbd{Rmax} will be ignored, and the specified number of components will be used when running the analysis.
 
 The package also provides two sequential procedures that incorporate a cross-validation step (\kbd{modsel="seqRcv"} and \kbd{modsel="seqAcv"}). \kbd{seqRcv} also starts with the selection of the weighting value based on maximum likelihood principles, but in the next step, the number of components is determined using leave-one-out cross-validation (Hastie, Tibshirani, & Friedman, 2001). \kbd{seqAcv} is identical to the default procedure, but has an extra step: after the selection of the number of components, leave-one-out cross-validation is applied to choose the weighting value.
 }
