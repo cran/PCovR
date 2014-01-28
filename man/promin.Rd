@@ -27,5 +27,4 @@ print(Px)
 Px_r <- promin(Px)
 print(Px_r$loadings)
 }
-\keyword{multivariate}
-\keyword{regression}
+\keyword{rotation}

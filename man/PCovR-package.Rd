@@ -8,11 +8,11 @@
 \tabular{ll}{
 Package: \tab \pkg{PCovR}\cr
 Type: \tab Package\cr
-Version: \tab 2.2\cr
-Date: \tab 2014-01-22\cr
+Version: \tab 2.3\cr
+Date: \tab 2014-01-28\cr
 License: \tab GPL (>= 2)\cr
 }
-This package contains the function \code{\link{pcovr}}, which runs a full PCovR analysis of a data set and provides several preprocessing, model selection, and rotation options. This function calls the function \code{\link{pcovr_est}}, which estimates the PCovR parameters given a specific weigthing parameter value and a particular number of components. This function was originally written in MATLAB by De Jong & Kiers (1992). Moreover, an illustrative data set is included, \code{\link{alexithymia}}.
+This package contains the function \code{\link{pcovr}}, which runs a full PCovR analysis of a data set and provides several preprocessing, model selection, and rotation options. This function calls the function \code{\link{pcovr_est}}, which estimates the PCovR parameters given a specific weigthing parameter value and a particular number of components. This function was originally written in MATLAB by De Jong & Kiers (1992). Two illustrative data sets are included: \code{\link{alexithymia}} and \code{\link{psychiatrists}}.
 }
 \author{Marlies Vervloet (\email{marlies.vervloet@ppw.kuleuven.be})}
 \references{\cite{S. de Jong, H.A.L. Kiers, Principal covariates regression: Part I. Theory, Chemom. intell. lab. syst 14 (1992) 155-164.}}
@@ -24,7 +24,7 @@ This package contains the function \code{\link{pcovr}}, which runs a full PCovR 
 
 \code{\link{alexithymia}}
 
-\code{\link{SortLoadings}}
+\code{\link{psychiatrists}}
 }
 \examples{
 data(alexithymia)

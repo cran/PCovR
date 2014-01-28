@@ -29,5 +29,4 @@ print(Px)
 Px_r <- wvarim(Px)
 print(Px_r$loadings)
 }
-\keyword{multivariate}
-\keyword{regression}
+\keyword{rotation}

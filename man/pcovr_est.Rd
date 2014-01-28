@@ -34,5 +34,4 @@ Y <- data.matrix(alexithymia$Y)
 results <- pcovr_est(X, Y, r=2, a=.90)
 str(results)
 }
-\keyword{multivariate}
 \keyword{regression}

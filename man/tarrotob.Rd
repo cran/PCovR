@@ -24,5 +24,4 @@ W <- matrix(rbinom(36,1,.4),12,3)
 Px_r <- tarrotob(Px,W)
 print(Px_r$A)
 }
-\keyword{multivariate}
-\keyword{regression}
+\keyword{rotation}

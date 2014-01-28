@@ -33,5 +33,4 @@ Marlies Vervloet
 data(psychiatrists)
 ratio <- ErrorRatio(psychiatrists$X,psychiatrists$Y)
 }
-\keyword{multivariate}
 \keyword{regression}

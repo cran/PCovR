@@ -9,11 +9,6 @@ pcovr.default <-
     Jlabel <- colnames(X)
     Klabel <- colnames(Y)
     
-    if (is.null(weight)){
-      a <- seq(from=.01, to=1, by=.01)
-    } else {
-      a <- weight
-    }
     if (is.null(R)==F){
       Rmin <- Rmax <- R
     }
@@ -29,11 +24,21 @@ pcovr.default <-
                 cent=scale(Y, center=T, scale=F))
     Y <- array(Y,c(N,K))
     
+    
     # MODEL SELECTION
     AlphaMaxLik <- (SUM(X)$ssq/ (SUM(X)$ssq + SUM(Y)$ssq*ratio))
-    alpha <- a[which.min(abs(a - AlphaMaxLik))]
+    if (length(weight)==1){
+      a <- weight
+    } else {
+      a <- AlphaMaxLik
+    }
     
     if (modsel=="sim"){
+      if (is.null(weight)){
+        a <- seq(from=.01, to=1, by=.01)
+      } else {
+        a <- weight
+      }
       CV <- array(NA,c(length(a),length(vec)))
       for (l in 1:length(vec)){
         for (w in 1:length(a)){
@@ -45,36 +50,49 @@ pcovr.default <-
       R <- vec[arrayInd(which.max(CV),dim(CV))[2]]
       
     } else if (modsel=="seqRcv"){
+      if (length(weight)>1){
+        print("WARNING: Weighting values overruled by maximum likelihood procedure")
+      }
       CV <- array(NA,c(1,length(vec)))
       for (l in 1:length(vec)){
-        para <- pcovr_est(X,Y,vec[l],alpha,TRUE,fold)
+        para <- pcovr_est(X,Y,vec[l],a,TRUE,fold)
         CV[1,l] <- para$Qy2
       }
       R <- vec[which.max(CV)]
+      alpha <- a
       
     } else if (modsel=="seq") {
+      if (length(weight)>1){
+        print("WARNING: Weighting values overruled by maximum likelihood procedure")
+      }
       vec <- c(vec[1]-1,vec,vec[length(vec)]+1)
       VAF <- matrix(0,1,length(vec))
       scr <- array(NA,c(1,length(vec)))
       for (l in 1:length(vec)){
         if (vec[l]>0){
-          para <- pcovr_est(X,Y,vec[l], a = alpha, cross = FALSE,fold)
-          VAF[1,l] <- alpha*para$Rx2 + (1-alpha)*para$Ry2
+          para <- pcovr_est(X,Y,vec[l], a = a, cross = FALSE,fold)
+          VAF[1,l] <- a*para$Rx2 + (1-a)*para$Ry2
         }
       }
       for (u in 2:(length(vec)-1)){
         scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
       }
       R <- vec[which.max(scr)]
+      alpha <- a
     } else if (modsel=="seqAcv"){
+      if (is.null(weight)){
+        a <- seq(from=.01, to=1, by=.01)
+      } else {
+        a <- weight
+      }
       vec <- c(vec[1]-1,vec,vec[length(vec)]+1)
       VAF <- matrix(0,1,length(vec))
       scr <- array(NA,c(1,length(vec)))
       CV <- array(NA,c(length(a),1))
       for (l in 1:length(vec)){
         if (vec[l]>0){
-          para <- pcovr_est(X,Y,vec[l], a = alpha, cross = FALSE,fold)
-          VAF[1,l] <- alpha*para$Rx2 + (1-alpha)*para$Ry2
+          para <- pcovr_est(X,Y,vec[l], a = AlphaMaxLik, cross = FALSE,fold)
+          VAF[1,l] <- AlphaMaxLik*para$Rx2 + (1-AlphaMaxLik)*para$Ry2
         }
       }
       for (u in 2:(length(vec)-1)){
