@@ -3,9 +3,6 @@ pcovr.default <-
     J <- ncol(X)
     N <- nrow(X)
     K <- ncol(Y)
-    if (N!=nrow(Y)){
-      print('The number of observations is not identical for X and Y')
-    }
     Jlabel <- colnames(X)
     Klabel <- colnames(Y)
     

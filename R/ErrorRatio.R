@@ -1,7 +1,6 @@
 ErrorRatio <-
   function(X,Y,Rmin=1,Rmax=ncol(X)/3,prepX="stand",prepY="stand"){
     J <- ncol(X)
-    K <- ncol(Y)
     N <- nrow(X)
     
     #Preprocessing
@@ -11,16 +10,26 @@ ErrorRatio <-
     Y <- switch(prepY,
                 stand=nrm2(scale(Y, center=T, scale=F))*N^(1/2),
                 cent=scale(Y, center=T, scale=F))
+    K <- ncol(Y)
     Y <- array(Y,c(N,K))
     
     #Explained variance Y
     xnam <- paste("V", 1:J, sep="")
-    ynam <- paste("V", (J+1):(J+K), sep="")
-    formula1 <- as.formula(paste(paste("cbind(",paste(ynam, collapse =','),") ~ "), paste(xnam, collapse= "+")))    #Explained variance Y
+    if (K==1){
+      ynam <- paste("V", (J+1), sep="")
+      formula1 <- as.formula(paste(paste(ynam," ~ "), paste(xnam, collapse= "+")))    #Explained variance Y
+    } else {
+      ynam <- paste("V", (J+1):(J+K), sep="")
+      formula1 <- as.formula(paste(paste("cbind(",paste(ynam, collapse =','),") ~ "), paste(xnam, collapse= "+")))    #Explained variance Y
+    }
     data <- as.data.frame(cbind(X,Y))
     colnames(data) <- paste("V", 1:(J+K), sep="")
     reg <- lm(formula1, data)
-    Ry2 <- SUM(as.matrix(X) %*% as.matrix(reg$coefficients[2:(J+1),]))$ssq / SUM(Y)$ssq
+    if (K==1){
+      Ry2 <- SUM(as.matrix(X) %*% as.matrix(reg$coefficients[2:(J+1)]))$ssq / SUM(Y)$ssq
+    } else {
+      Ry2 <- SUM(as.matrix(X) %*% as.matrix(reg$coefficients[2:(J+1),]))$ssq / SUM(Y)$ssq
+    }
     ery <- 1-Ry2
     
     #Explained variance X
@@ -35,7 +44,7 @@ ErrorRatio <-
     }
     R <- vec[which.max(scr)]
     erx <- 1-VAF[which.max(scr)]
-        
+    
     #error variance ratio
     ratio <- erx/ery
     return(ratio)
