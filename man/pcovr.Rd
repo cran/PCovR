@@ -14,6 +14,9 @@ pcovr(X,Y,modsel="seq",Rmin=1,Rmax=ncol(X)/3,R=NULL,weight=NULL,rot="varimax",
 target=NULL, prepX="stand",prepY="stand", 
 ratio=ErrorRatio(X,Y,Rmin,Rmax,prepX,prepY), 
 fold="LeaveOneOut",zeroloads=ncol(X))
+
+## S3 method for class 'pcovr'
+\method{plot}{pcovr}(x,cpal=NULL,lpal=NULL,\dots)
 }
 \arguments{
   \item{X}{Dataframe containing predictor scores}
@@ -31,6 +34,10 @@ fold="LeaveOneOut",zeroloads=ncol(X))
   \item{ratio}{Ratio of the estimated error variances of the predictor block and the criterion block}
   \item{fold}{Value of \emph{k} when performing \emph{k}-fold cross-validation. By default, leave-one-out cross-validation is performed.}
   \item{zeroloads}{Number of near-zero loadings of the target for \kbd{simplimax} rotation}
+  \item{x}{An object of the type produced by \kbd{pcovr}}
+  \item{cpal}{Vector of \code{\link{colors}} used for model selection plots}
+  \item{lpal}{Vector of line types used for model selection plots}
+  \item{\dots}{Further graphical arguments}
 }
 \details{
 \subsection{Preprocessing}{
