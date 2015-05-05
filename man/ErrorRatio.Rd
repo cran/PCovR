@@ -25,6 +25,8 @@ The returned value is the estimated error variance of \kbd{X}, divided by the es
 }
 \references{
 \cite{Wilderjans, T. F., Ceulemans, E., Van Mechelen, I., & Van den Berg, R. A. (2011). Simultaneous analysis of coupled data matrices subject to different amounts of noise. British Journal of Mathematical and Statistical Psychology , 64, 277-290.}
+
+\cite{Marlies Vervloet, Henk A. Kiers, Wim Van den Noortgate, Eva Ceulemans (2015). PCovR: An R Package for Principal Covariates Regression. Journal of Statistical Software, 65(8), 1-14. URL http://www.jstatsoft.org/v65/i08/.}
 }
 \author{
 Marlies Vervloet

@@ -20,6 +20,8 @@ wvarim(F1, nrs = 20)
 }
 \references{
 \cite{Cureton, E. E., & Mulaik, S. A. (1975). The weighted varimax rotation and the promax rotation. Psychometrika, 40(2), 183-195.}
+
+\cite{Marlies Vervloet, Henk A. Kiers, Wim Van den Noortgate, Eva Ceulemans (2015). PCovR: An R Package for Principal Covariates Regression. Journal of Statistical Software, 65(8), 1-14. URL http://www.jstatsoft.org/v65/i08/.}
 }
 \author{Marlies Vervloet (\email{marlies.vervloet@ppw.kuleuven.be})}
 \examples{

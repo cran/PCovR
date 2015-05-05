@@ -8,14 +8,16 @@
 \tabular{ll}{
 Package: \tab \pkg{PCovR}\cr
 Type: \tab Package\cr
-Version: \tab 2.4\cr
-Date: \tab 2014-07-14\cr
+Version: \tab 2.6\cr
+Date: \tab 2015-05-05\cr
 License: \tab GPL (>= 2)\cr
 }
 This package contains the function \code{\link{pcovr}}, which runs a full PCovR analysis of a data set and provides several preprocessing, model selection, and rotation options. This function calls the function \code{\link{pcovr_est}}, which estimates the PCovR parameters given a specific weigthing parameter value and a particular number of components. This function was originally written in MATLAB by De Jong & Kiers (1992). Two illustrative data sets are included: \code{\link{alexithymia}} and \code{\link{psychiatrists}}.
 }
 \author{Marlies Vervloet (\email{marlies.vervloet@ppw.kuleuven.be})}
-\references{\cite{S. de Jong, H.A.L. Kiers, Principal covariates regression: Part I. Theory, Chemom. intell. lab. syst 14 (1992) 155-164.}}
+\references{\cite{S. de Jong, H.A.L. Kiers, Principal covariates regression: Part I. Theory, Chemom. intell. lab. syst 14 (1992) 155-164.}
+
+\cite{Marlies Vervloet, Henk A. Kiers, Wim Van den Noortgate, Eva Ceulemans (2015). PCovR: An R Package for Principal Covariates Regression. Journal of Statistical Software, 65(8), 1-14. URL http://www.jstatsoft.org/v65/i08/.}}
 \keyword{ package }
 \seealso{
 \code{\link{pcovr}}

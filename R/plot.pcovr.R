@@ -10,7 +10,7 @@ plot.pcovr <-
     
     if (modsel=="sim"){
       Qy2 <- x$Qy2
-      plot(a,Qy2[,1],xlab="Weighting Parameter",ylab="Qy2",col=cpal[1],type="l",ylim=c(0,1))
+      plot(a,Qy2[,1],xlab="Weighting Parameter",ylab="Qy2",col=cpal[1],lty=lpal[1],type="l",ylim=c(0,1))
       for (r in 1:length(vec)){
         points(a,Qy2[,r],col=cpal[r],type="l",lty=lpal[r])
       }

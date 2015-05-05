@@ -3,6 +3,9 @@ pcovr.default <-
     J <- ncol(X)
     N <- nrow(X)
     K <- ncol(Y)
+    if (is.null(ncol(Y))==T){
+      K <- 1
+    }
     Jlabel <- colnames(X)
     Klabel <- colnames(Y)
     

@@ -18,6 +18,8 @@ promin(F1, nrs = 20)
 }
 \references{
 \cite{Lorenzo-Seva, U. (1999). Promin: A method for oblique factor rotation. Multivariate Behavioral Research, 34(3), 347-365.}
+
+\cite{Marlies Vervloet, Henk A. Kiers, Wim Van den Noortgate, Eva Ceulemans (2015). PCovR: An R Package for Principal Covariates Regression. Journal of Statistical Software, 65(8), 1-14. URL http://www.jstatsoft.org/v65/i08/.}
 }
 \author{Marlies Vervloet (\email{marlies.vervloet@ppw.kuleuven.be})}
 \examples{

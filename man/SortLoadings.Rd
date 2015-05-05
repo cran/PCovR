@@ -16,6 +16,8 @@ SortLoadings(Px)
 }
 \references{
 \cite{De Jong, S., & Kiers, H. A. (1992). Principal covariates regression: Part I. Theory. Chemometrics and Intelligent Laboratory Systems , 155-164.}
+
+\cite{Marlies Vervloet, Henk A. Kiers, Wim Van den Noortgate, Eva Ceulemans (2015). PCovR: An R Package for Principal Covariates Regression. Journal of Statistical Software, 65(8), 1-14. URL http://www.jstatsoft.org/v65/i08/.}
 }
 \author{Marlies Vervloet (\email{marlies.vervloet@ppw.kuleuven.be})}
 \seealso{

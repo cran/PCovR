@@ -49,6 +49,8 @@ List of 2
   }
 \references{
 \cite{Van Mechelen, I., & De Boeck, P. (1990). Projection of a binary criterion into a model of hierarchical classes. Psychometrika , 55 (4), 677-694.}
+
+\cite{Marlies Vervloet, Henk A. Kiers, Wim Van den Noortgate, Eva Ceulemans (2015). PCovR: An R Package for Principal Covariates Regression. Journal of Statistical Software, 65(8), 1-14. URL http://www.jstatsoft.org/v65/i08/.}
 }
 \examples{
 data(psychiatrists)

@@ -47,6 +47,8 @@ List of 2
 \cite{Radloff, R. S. (1977). The CES-D scale: A self-report depression scale for research in the general population. Applied psychological measurement , 1 (3), 385-401.}
 
 \cite{Rosenberg, M. (1989). Society and the adolescent self-image. Middletown: Wesleyan University Press.}
+
+\cite{Marlies Vervloet, Henk A. Kiers, Wim Van den Noortgate, Eva Ceulemans (2015). PCovR: An R Package for Principal Covariates Regression. Journal of Statistical Software, 65(8), 1-14. URL http://www.jstatsoft.org/v65/i08/.}
 }
 \examples{
 data(alexithymia)
