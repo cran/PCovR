@@ -1,5 +1,11 @@
 pcovr.default <-
-  function(X,Y,modsel="seq",Rmin=1,Rmax=ncol(X)/3,R=NULL,weight=NULL,rot="varimax", target=NULL, prepX="stand",prepY="stand", ratio=ErrorRatio(X,Y,Rmin,Rmax,prepX,prepY), fold="LeaveOneOut",zeroloads=ncol(X)){
+  function(X,Y,modsel="seq",Rmin=1,Rmax=ncol(X)/3,R=NULL,weight=NULL,rot="varimax", target=NULL, prepX="stand",prepY="stand", ratio="estimation", fold="LeaveOneOut",zeroloads=ncol(X)){
+    if (is.data.frame(X) == F){
+      print("WARNING: X is not a dataframe")
+    }
+    if (is.data.frame(Y) == F){
+      print("WARNING: Y is not a dataframe")
+    }    
     J <- ncol(X)
     N <- nrow(X)
     K <- ncol(Y)
@@ -26,6 +32,18 @@ pcovr.default <-
     
     
     # MODEL SELECTION
+    if (ratio=="estimation"){
+      if (modsel=="sim"){
+        ratio=1
+      } else {
+        if (N<J){
+          ratio=1
+          print("WARNING: ratio changed to 1 because more predictors than obs")
+        } else {
+          ratio <- ErrorRatio(X,Y,Rmin,Rmax,prepX,prepY)
+        }
+      } 
+    }
     AlphaMaxLik <- (SUM(X)$ssq/ (SUM(X)$ssq + SUM(Y)$ssq*ratio))
     if (length(weight)==1){
       a <- weight
@@ -75,7 +93,9 @@ pcovr.default <-
         }
       }
       for (u in 2:(length(vec)-1)){
-        scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
+        if (VAF[u]>(VAF[u-1]*1.01)){
+          scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
+        }
       }
       R <- vec[which.max(scr)]
       alpha <- a
@@ -96,7 +116,9 @@ pcovr.default <-
         }
       }
       for (u in 2:(length(vec)-1)){
-        scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
+        if (VAF[u]>(VAF[u-1]*1.01)){
+          scr[,u]=(VAF[u]-VAF[u-1])/(VAF[u+1]-VAF[u])
+        }
       }
       R <- vec[which.max(scr)]
       for (w in 1:length(a)){

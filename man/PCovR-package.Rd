@@ -8,8 +8,8 @@
 \tabular{ll}{
 Package: \tab \pkg{PCovR}\cr
 Type: \tab Package\cr
-Version: \tab 2.6\cr
-Date: \tab 2015-05-05\cr
+Version: \tab 2.7\cr
+Date: \tab 2017-06-19\cr
 License: \tab GPL (>= 2)\cr
 }
 This package contains the function \code{\link{pcovr}}, which runs a full PCovR analysis of a data set and provides several preprocessing, model selection, and rotation options. This function calls the function \code{\link{pcovr_est}}, which estimates the PCovR parameters given a specific weigthing parameter value and a particular number of components. This function was originally written in MATLAB by De Jong & Kiers (1992). Two illustrative data sets are included: \code{\link{alexithymia}} and \code{\link{psychiatrists}}.

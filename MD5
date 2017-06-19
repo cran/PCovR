@@ -1,9 +1,9 @@
-886e8619320052fc27c0691e0699b204 *DESCRIPTION
-63468d32ed2d4d2db816d1c1da17c671 *NAMESPACE
+33e1091d1cd2b4141bc65111ad8dc77f *DESCRIPTION
+927cd1aec9dea923865945d039cd7c4a *NAMESPACE
 62cc333b434c10437741d4ad14618aac *R/ErrorRatio.R
 1abfd04794d19d2bcbe99b6839a82760 *R/SortLoadings.R
-3bc105a26d4156bd7c1d0e755b5f7eb0 *R/pcovr.R
-e0b32f77cacfd0f56f3de0c45d206ba9 *R/pcovr.default.R
+d6cd8c51c43f5ca41917d24e909fac97 *R/pcovr.R
+876565ad106ae35d710d9a7f86989612 *R/pcovr.default.R
 594c925e93b5cb643fca505fed17bca5 *R/pcovr_est.R
 e3718354b1aaaef9ca68e432ba30315d *R/plot.pcovr.R
 2493d79fb7a5775b9ffd75f40c0b1969 *R/print.pcovr.R
@@ -15,10 +15,10 @@ b19f72e3509990f3e9db92070da0f07c *data/alexithymia.rda
 137d5e9fb333651ddf06214445a8adb6 *data/psychiatrists.rda
 c48060b18036933b9b7f56d56cfb1790 *inst/CITATION
 9df82269b59c263f49d518d88818b6d5 *man/ErrorRatio.Rd
-c185bfc08caacb29f56f8bdf83d6d392 *man/PCovR-package.Rd
+20591ed2dad5c13f41645c3ce705b3bf *man/PCovR-package.Rd
 382cc2f83881d5bfdd71551c43ddcc69 *man/SortLoadings.Rd
 b6b0ca817a94c32ee738f29949ba272c *man/alexithymia.Rd
-5ed47b696c9a853c2f9e07ca6de2490b *man/pcovr.Rd
+a61543c516d2abedb7a7820672c01079 *man/pcovr.Rd
 218200e4226e83e1c0506a220fbf3ac1 *man/pcovr_est.Rd
 d827f4245b8443a0f1012b66c0e344ec *man/promin.Rd
 3401fb5042b518e48941f14509f2cd90 *man/psychiatrists.Rd

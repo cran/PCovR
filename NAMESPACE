@@ -1,6 +1,7 @@
 exportPattern("^[[:alpha:]]+")
 
-import(GPArotation, ThreeWay, MASS, Matrix)
+import(GPArotation, ThreeWay, MASS, stats,graphics)
+importFrom("Matrix","Diagonal")
 
 S3method(print, pcovr)
 S3method(summary, pcovr)
