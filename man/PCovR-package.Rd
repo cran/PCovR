@@ -5,13 +5,6 @@
 \title{Principal Covariates Regression}
 \description{Analyzing regression data with many and/or highly collinear predictor variables, by simultaneously reducing the predictor variables to a limited number of components and regressing the criterion variables on these components. Several rotation options are provided in this package, as well as model selection options.}
 \details{
-\tabular{ll}{
-Package: \tab \pkg{PCovR}\cr
-Type: \tab Package\cr
-Version: \tab 2.7\cr
-Date: \tab 2017-06-19\cr
-License: \tab GPL (>= 2)\cr
-}
 This package contains the function \code{\link{pcovr}}, which runs a full PCovR analysis of a data set and provides several preprocessing, model selection, and rotation options. This function calls the function \code{\link{pcovr_est}}, which estimates the PCovR parameters given a specific weigthing parameter value and a particular number of components. This function was originally written in MATLAB by De Jong & Kiers (1992). Two illustrative data sets are included: \code{\link{alexithymia}} and \code{\link{psychiatrists}}.
 }
 \author{Marlies Vervloet (\email{marlies.vervloet@ppw.kuleuven.be})}
